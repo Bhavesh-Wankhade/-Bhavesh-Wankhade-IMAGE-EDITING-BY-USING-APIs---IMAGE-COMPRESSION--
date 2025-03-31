@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Image Compressor and Dimension Changer</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="upload-section">
+      <input type="file" id="imageInput" accept="image/*" />
+      <button onclick="uploadImage()">Upload Image</button>
+    </div>
+
+    <div class="dimension-section">
+      <label for="imageDimensions">Image Dimensions:</label>
+      <input type="range" id="imageDimensions" min="10" max="100" value="50" oninput="updateDimensions()" />
+      <span id="dimensionValue">50%</span>
+    </div>
+
+    <div class="frame-ratio-section">
+      <label for="frameRatios">Frame Ratio:</label>
+      <input type="text" id="frameRatioNumerator" placeholder="Numerator" oninput="updateDimensions()" />
+      <input type="text" id="frameRatioDenominator" placeholder="Denominator" oninput="updateDimensions()" />
+
+      <select id="frameRatios" onchange="selectFrameRatio()">
+        <option value="1">1:1 (Square)</option>
+        <option value="1.33">4:3</option>
+        <option value="1.5">3:2</option>
+        <option value="1.77">16:9 (Widescreen)</option>
+        <option value="2">2:1</option>
+        <option value="2.35">21:9 (Cinemascope)</option>
+        <option value="1.25">5:4</option>
+        <option value="3">3:1</option>
+        <option value="1.6">8:5</option>
+        <option value="1.6667">5:3</option>
+        <option value="1.4">7:5</option>
+        <option value="2.5">5:2</option>
+        <option value="0.75">3:4</option>
+        <option value="0.5625">9:16</option>
+        <option value="0.6">3:5</option>
+        <option value="0.6667">2:3</option>
+        <!-- Add more options if needed -->
+      </select>
+    </div>
+
+    <div class="compression-size-section">
+      <label for="compressionSize">Compression Size (KB):</label>
+      <input type="text" id="compressionSize" placeholder="Enter size in KB" />
+      <button onclick="applyCompressionSize()">Apply Size (Optional)</button>
+    </div>
+
+    <div class="download-section">
+      <label for="imageName">Save Image as:</label>
+      <input type="text" id="imageName" placeholder="Enter Image Name (optional)">
+      <select id="imageFormat">
+        <option value="png">PNG</option>
+        <option value="jpg">JPG</option>
+        <option value="jpeg">JPEG</option>
+      </select>
+      <button onclick="downloadResultImage()">Download Image</button>
+    </div>
+
+    <div class="reset-section">
+      <button onclick="resetValues()">Reset all Effects</button>
+    </div>
+
+    <div id="resultContainer">
+      <img id="resultImage" />
+      <div id="sizeDisplay">Image Size: <span id="imageSize">0 KB</span></div>
+    </div>
+
+    <div id="detailsContainer">
+      <h2>Compression Details</h2>
+      <table id="compressionDetails">
+        <thead>
+          <tr>
+            <th>Image Type</th>
+            <th>Original Size (bytes)</th>
+            <th>Compressed Size (bytes)</th>
+            <th>Compression Time (sec)</th>
+            <th>Compression Ratio</th>
+            <th>Space Saving</th>
+          </tr>
+        </thead>
+        <tbody id="detailsBody">
+          <!-- Details will be dynamically added here using JavaScript -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
